@@ -13,13 +13,13 @@ add_prog_1( char* host )
 	CLIENT *clnt;
 	int  *result_1;
 	intpair  add_1_arg;
-	clnt = clnt_create(host, ADD_PROG, ADD_VERS, "udp");
+	clnt = clnt_create(host, ADD_PROG, ADD_VERS, "tcp");
+	add_1_arg.a = 123;
+    add_1_arg.b = 22;
 	if (clnt == NULL) {
 		clnt_pcreateerror(host);
 		exit(1);
 	}
-	add_1_arg.a = 123;
-    add_1_arg.b = 22;
     result_1 = add_1(&add_1_arg, clnt);
 	if (result_1 == NULL) {
 		clnt_perror(clnt, "call failed:");
